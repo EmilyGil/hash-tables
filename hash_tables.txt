@@ -37,6 +37,106 @@ A: Hash Table
 
 >Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
 
+A:
+ import java.util.*; 
+public class NewClass 
+{ 
+    public static void main(String args[]) 
+    { 
+        // Creation of HashMap 
+        HashMap<String, String> associate = new HashMap<>(); 
+  
+        // Adding values to HashMap as ("keys", "values") 
+        Associate.put("Name"); 
+        Associate.put("Address"); 
+        Associate.put("Number"); 
+        
+  
+        System.out.println("Testing .isEmpty() method"); 
+  
+        // Checks whether the HashMap is empty or not 
+        // Not empty so printing the values 
+        if (!Associate.isEmpty()) 
+        { 
+            System.out.println("HashMap Associate is notempty"); 
+  
+            // Accessing the contents of HashMap through Keys 
+            System.out.println("ASSOCIATE : " + Associate.get("Name")); 
+            System.out.println("ASSOCIATE : " + Associate.get("Address")); 
+            System.out.println("ASSOCIATE : " + Associate.get("Number")); 
+           
+  
+            // size() method prints the size of HashMap. 
+            System.out.println("Size Of HashMap : " + Associate.size()); 
+        } 
+    } 
+} 
 >Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
+A:
+import java.util.*; 
+public class NewClass 
+{ 
+    public static void main(String args[]) 
+    { 
+        
+        HashMap<String, String> Inventory = new HashMap<>(); 
+  
+        
+        Inventory.put("Food"); 
+        Inventory.put("Drinks"); 
+        Inventory.put("Alcohol"); 
+         
+  
+        System.out.println("Testing .isEmpty() method"); 
+  
+        
+        if (!Inventory.isEmpty()) 
+        { 
+            System.out.println("HashMap Inventory is notempty"); 
+  
+            
+            System.out.println("INVENTORY : " + Geeks.get("Food")); 
+            System.out.println("INVENTORY : " + Geeks.get("Drinks")); 
+            System.out.println("INVENTORY : " + Geeks.get("Alcohol")); 
+           
+  
+            
+            System.out.println("Size Of HashMap : " + Inventory.size()); 
+        } 
+    } 
+} 
+
+
 >Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+A:
+import java.util.*; 
+public class NewClass 
+{ 
+    public static void main(String args[]) 
+    { 
+        
+        HashMap<String, String> Newspaper = new HashMap<>(); 
+  
+        
+        Newspaper.put("Publisher"); 
+        Newspaper.put("Date"); 
+       
+  
+        System.out.println("Testing .isEmpty() method"); 
+  
+         
+        if (!Newspaper.isEmpty()) 
+        { 
+            System.out.println("HashMap Newspaper is notempty"); 
+  
+            \
+            System.out.println("NEWSPAPER : " + Newspaper.get("Publisher")); 
+            System.out.println("NEWSPAPER : " + Newspaper.get("Date")); 
+            
+            
+            System.out.println("Size Of HashMap : " + Newspaper.size()); 
+        } 
+    } 
+} 
