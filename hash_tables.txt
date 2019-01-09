@@ -1,20 +1,22 @@
->What is a hash table?
+1. What is a hash table?
 
 A: type of data structure that stores each value by linking it to a key, forming key-value pairs, just like JavaScript objects.
 
->What is hashing?
+2. What is hashing?
 
 A:  Hashing is the conversion from a string to a numerical index. 
 
->How does a hash table store data?
+3. How does a hash table store data?
 
-A: Hash tables, like arrays, are intended to be used as collections of similar data. They are commonly used to store data by some form of identifier. 
+A:The hash table stores data by taking the key, converting it into a hash code, then modding the output of the hashing function with its capacity, and then it stores the value in an array index.
 
->How are hash tables and objects different?
+
+4. How are hash tables and objects different?
 
 A: Object’s are really more of a two-dimensional construct in that you have a object with multiple, fixed properties and values for those properties.  Hashtables are more one-dimensional having only a “key” and a “value”.
 
->Determine whether you would use a hash table or an object to store each of the following pieces of data:
+5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
+
 A list of pets and their unique names.
 
 A: Object
@@ -35,108 +37,188 @@ The primary and secondary phone numbers for a contact.
 
 A: Hash Table
 
->Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
 
 A:
- import java.util.*; 
-public class NewClass 
-{ 
-    public static void main(String args[]) 
-    { 
-        // Creation of HashMap 
-        HashMap<String, String> associate = new HashMap<>(); 
+function hash(key, size) {
+  var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
+  }
+  return hash % size;  
+};
+
+function hashTable (){
+  var container = [];
+  var containerCap = 777;
   
-        // Adding values to HashMap as ("keys", "values") 
-        Associate.put("Name"); 
-        Associate.put("Address"); 
-        Associate.put("Number"); 
-        
+  this.set = function(phone, name, customerAddress){
+    var index = hash(phone, containerCap);
+
+    if (container[index] === undefined) {
+      container[index] = [ [phone, name, customerAddress] ];
+    }
+};
   
-        System.out.println("Testing .isEmpty() method"); 
-  
-        // Checks whether the HashMap is empty or not 
-        // Not empty so printing the values 
-        if (!Associate.isEmpty()) 
-        { 
-            System.out.println("HashMap Associate is notempty"); 
-  
-            // Accessing the contents of HashMap through Keys 
-            System.out.println("ASSOCIATE : " + Associate.get("Name")); 
-            System.out.println("ASSOCIATE : " + Associate.get("Address")); 
-            System.out.println("ASSOCIATE : " + Associate.get("Number")); 
-           
-  
-            // size() method prints the size of HashMap. 
-            System.out.println("Size Of HashMap : " + Associate.size()); 
-        } 
-    } 
-} 
->Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+  this.get = function(phone){
+    var index = hash(phone, containerCap);
+
+    if(container[index] === undefined){
+      return "The list of customers is empty";
+    } else {
+      for(var i = 0; i < container[index].length; i++) {
+        if(container[index][i][0] === phone) {
+          return container[index][i][0] + ", " + container[index][i][1] + ", " + container[index][i][2];
+        } else {
+          return "Customer does not exist";
+        }
+      }
+    }
+  };
+}
+
+var customers = new hashTable();
+customers.set("999-999-9999", "Alex", "123 Random St");
+customers.set("222-222-2222", "Sam", "456 Some Ln");
+customers.set("333-333-3333", "Todd", "789 Nowhere Dr");
+customers.set("555-555-5555", "Josh", "012 Circle Ct");
+
+console.log(customers.get("999-999-9999"));
+console.log(customers.get("222-222-2222")); 
+console.log(customers.get("333-333-3333")); 
+console.log(customers.get("555-555-5555"));
+
+7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
 A:
-import java.util.*; 
-public class NewClass 
-{ 
-    public static void main(String args[]) 
-    { 
-        
-        HashMap<String, String> Inventory = new HashMap<>(); 
-  
-        
-        Inventory.put("Food"); 
-        Inventory.put("Drinks"); 
-        Inventory.put("Alcohol"); 
-         
-  
-        System.out.println("Testing .isEmpty() method"); 
-  
-        
-        if (!Inventory.isEmpty()) 
-        { 
-            System.out.println("HashMap Inventory is notempty"); 
-  
-            
-            System.out.println("INVENTORY : " + Geeks.get("Food")); 
-            System.out.println("INVENTORY : " + Geeks.get("Drinks")); 
-            System.out.println("INVENTORY : " + Geeks.get("Alcohol")); 
-           
-  
-            
-            System.out.println("Size Of HashMap : " + Inventory.size()); 
-        } 
+function hash(key, size){
+	var hash = 0;
+	for(var i = 0; i < key.length; i++){
+		hash += key.charCodeAt(i);
+	}
+
+	return hash % size;
+}
+
+function hashTable(){
+	var container = [];
+  var containerCap = 589;
+
+	this.set = function(item, quantity){
+		var index = hash(item, containerCap);
+
+		if(container[index] === undefined){
+			container[index] = [ [item, quantity] ];
+		}
+	};
+
+	this.get = function(item){
+		var index = hash(item, containerCap);
+
+		if(container[index] === undefined){
+    		return "The inventory list is empty";
+  	} else {
+    		for(var i = 0; i < container[index].length; i++) {
+      		if(container[index][i][0] === item) {
+        			return "There's " + container[index][i][1] + " " + container[index][i][0] + " in stock";
+      		} else {
+    				return "Item not found";
+      		}
+    		}
     } 
-} 
+
+  };
+}
+
+var inventory = new hashTable();
+inventory.set("Milk", "20");
+inventory.set("Swiss Cheese", "30");
+inventory.set("Carrots", "5");
+
+console.log(inventory.get("Milk"));
+console.log(inventory.get("Swiss Cheese"));
+console.log(inventory.get("Carrots"));
 
 
->Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
 
 A:
-import java.util.*; 
-public class NewClass 
-{ 
-    public static void main(String args[]) 
-    { 
-        
-        HashMap<String, String> Newspaper = new HashMap<>(); 
-  
-        
-        Newspaper.put("Publisher"); 
-        Newspaper.put("Date"); 
-       
-  
-        System.out.println("Testing .isEmpty() method"); 
-  
-         
-        if (!Newspaper.isEmpty()) 
-        { 
-            System.out.println("HashMap Newspaper is notempty"); 
-  
-            \
-            System.out.println("NEWSPAPER : " + Newspaper.get("Publisher")); 
-            System.out.println("NEWSPAPER : " + Newspaper.get("Date")); 
-            
-            
-            System.out.println("Size Of HashMap : " + Newspaper.size()); 
-        } 
+function hash(key, size){
+	var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
+  }
+
+  return hash % size;
+}
+
+function hashTableByPublisher(){
+  var container = [];
+  var containerCap = 577;
+
+  this.set = function(publisher, date, article){
+    var index = hash(publisher, containerCap);
+
+    if(container[index] === undefined){
+      container[index] = [ [publisher, date, article] ];
+    }
+  };
+
+  this.get = function(publisher){
+    var index = hash(publisher, containerCap);
+
+    if(container[index] === undefined) {
+        return "The publisher list is empty";
+    } else {
+        for(var i = 0; i < container[index].length; i++) {
+          if(container[index][i][0] === publisher) {
+              return "Publisher: " + container[index][i][0] + ", date published: " + container[index][i][1] + ", article: " + container[index][i][2];
+          } else {
+            return "publisher not found";
+          }
+        }
     } 
-} 
+  };
+}
+
+function hashTableByDate(){
+  var container = [];
+  var containerCap = 577;
+
+  this.set = function(publisher, date, article){
+    var index = hash(date, containerCap);
+
+    if(container[index] === undefined){
+      container[index] = [ [publisher, date, article] ];
+    }
+  };
+
+  this.get = function(date){
+    var index = hash(date, containerCap);
+
+    if(container[index] === undefined) {
+        return "The newspaper list is empty";
+    } else {
+        for(var i = 0; i < container[index].length; i++) {
+          if(container[index][i][1] === date) {
+              return "Publisher: " + container[index][i][0] + ", date published: " + container[index][i][1] + ", article: " + container[index][i][2];
+          } else {
+            return "date not found";
+          }
+        }
+    } 
+  };
+}
+
+var newspaper = new hashTableByPublisher();
+var newspaperDates = new hashTableByDate();
+
+newspaper.set("USA Today", "2001", "blah blah blah");
+newspaper.set("New York Daily News", "2012", "zip zip zip");
+
+newspaperDates.set("USA Today", "2001", "blah blah blah");
+newspaperDates.set("New York Daily News", "2012", "zip zip zip");
+
+console.log(newspaper.get("USA Today"));
+console.log(newspaperDates.get("2012"));
