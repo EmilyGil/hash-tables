@@ -91,54 +91,61 @@ console.log(customers.get("555-555-5555"));
 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
 A:
-function hash(key, size){
-	var hash = 0;
-	for(var i = 0; i < key.length; i++){
-		hash += key.charCodeAt(i);
-	}
+var hash = (string,max) =>{
+  var hash= 0
+  for(var i=0; i<string.length;i++){
+    hash += string.charCodeAt(i)
+  }
+  return hash % max;
+};
 
-	return hash % size;
-}
+let HashTable = function(){
+ let storage = [];
+ const storageLimit= 5;
 
-function hashTable(){
-	var container = [];
-  var containerCap = 589;
 
-	this.set = function(item, quantity){
-		var index = hash(item, containerCap);
-
-		if(container[index] === undefined){
-			container[index] = [ [item, quantity] ];
-		}
-	};
-
-	this.get = function(item){
-		var index = hash(item, containerCap);
-
-		if(container[index] === undefined){
-    		return "The inventory list is empty";
-  	} else {
-    		for(var i = 0; i < container[index].length; i++) {
-      		if(container[index][i][0] === item) {
-        			return "There's " + container[index][i][1] + " " + container[index][i][0] + " in stock";
-      		} else {
-    				return "Item not found";
-      		}
-    		}
-    } 
-
+ this.add = function(key, value) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      storage[index] = [
+        [key, value]
+      ];
+    } else {
+      var inserted = false;
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index][i][1] = value;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        storage[index].push([key, value]);
+      }
+    }
   };
-}
+  
+  this.search = function(key) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      return undefined;
+    } else {
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          return storage[index][i][1];
+        }
+      }
+    }
+  };
 
-var inventory = new hashTable();
-inventory.set("Milk", "20");
-inventory.set("Swiss Cheese", "30");
-inventory.set("Carrots", "5");
+};
 
-console.log(inventory.get("Milk"));
-console.log(inventory.get("Swiss Cheese"));
-console.log(inventory.get("Carrots"));
+var ht = new HashTable();
+ht.add('Fiction books',1000);
+ht.add('Horror books',500);
+ht.add('Comic books', 300);
+ht.add('Romance',210);
 
+ht.search('Romance')
 
 
 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
