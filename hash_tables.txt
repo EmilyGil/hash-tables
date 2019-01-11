@@ -151,44 +151,6 @@ ht.search('Romance')
 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
 
 A:
-function hash(key, size){
-	var hash = 0;
-  for(var i = 0; i < key.length; i++){
-    hash += key.charCodeAt(i);
-  }
-
-  return hash % size;
-}
-
-function hashTableByPublisher(){
-  var container = [];
-  var containerCap = 577;
-
-  this.set = function(publisher, date, article){
-    var index = hash(publisher, containerCap);
-
-    if(container[index] === undefined){
-      container[index] = [ [publisher, date, article] ];
-    }
-  };
-
-  this.get = function(publisher){
-    var index = hash(publisher, containerCap);
-
-    if(container[index] === undefined) {
-        return "The publisher list is empty";
-    } else {
-        for(var i = 0; i < container[index].length; i++) {
-          if(container[index][i][0] === publisher) {
-              return "Publisher: " + container[index][i][0] + ", date published: " + container[index][i][1] + ", article: " + container[index][i][2];
-          } else {
-            return "publisher not found";
-          }
-        }
-    } 
-  };
-}
-
 function hashTableByDate(){
   var container = [];
   var containerCap = 577;
