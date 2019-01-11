@@ -78,10 +78,10 @@ function hashTable (){
 }
 
 var customers = new hashTable();
-customers.set("999-999-9999", "Alex", "123 Random St");
-customers.set("222-222-2222", "Sam", "456 Some Ln");
-customers.set("333-333-3333", "Todd", "789 Nowhere Dr");
-customers.set("555-555-5555", "Josh", "012 Circle Ct");
+hashtable.add({phone:"999-999-9999", name:"Alex", customerAddress:"123 Random St"});
+hashtable.add({phone:"222-222-2222", name: "Sam", customerAddress:"456 Some Ln"});
+hashtable.add({phone:"333-333-3333", name: "Todd", customerAddress: "789 Nowhere Dr"});
+hashtable.add({phone:"555-555-5555", name: "Josh", customerAddress: "012 Circle Ct"});
 
 console.log(customers.get("999-999-9999"));
 console.log(customers.get("222-222-2222")); 
@@ -140,12 +140,12 @@ let HashTable = function(){
 };
 
 var ht = new HashTable();
-ht.add('Fiction books',1000);
-ht.add('Horror books',500);
-ht.add('Comic books', 300);
-ht.add('Romance',210);
+ht.add({key:'Fiction books', storageLimit:1000});
+ht.add({key:'Horror books',storageLimit:500});
+ht.add({key:'Comic books', storageLimit:300});
+ht.add({key:'Romance', storageLimit:210});
 
-ht.search('Romance')
+ht.search('Romance');
 
 
 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
@@ -183,11 +183,11 @@ function hashTableByDate(){
 var newspaper = new hashTableByPublisher();
 var newspaperDates = new hashTableByDate();
 
-newspaper.set("USA Today", "2001", "blah blah blah");
-newspaper.set("New York Daily News", "2012", "zip zip zip");
+newspaper.set({publisher:"USA Today", date: "2001", article: "blah blah blah"});
+newspaper.set({publisher:"New York Daily News", date: "2012", article: "zip zip zip"});
 
-newspaperDates.set("USA Today", "2001", "blah blah blah");
-newspaperDates.set("New York Daily News", "2012", "zip zip zip");
+newspaperDates.set({publisher:"USA Today", date: "2001", article: "blah blah blah"});
+newspaperDates.set({publisher:"New York Daily News", date: "2012", article: "zip zip zip"});
 
 console.log(newspaper.get("USA Today"));
 console.log(newspaperDates.get("2012"));
