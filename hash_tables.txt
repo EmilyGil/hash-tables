@@ -78,10 +78,10 @@ function hashTable (){
 }
 
 var customers = new hashTable();
-hashtable.add({phone:"999-999-9999", name:"Alex", customerAddress:"123 Random St"});
-hashtable.add({phone:"222-222-2222", name: "Sam", customerAddress:"456 Some Ln"});
-hashtable.add({phone:"333-333-3333", name: "Todd", customerAddress: "789 Nowhere Dr"});
-hashtable.add({phone:"555-555-5555", name: "Josh", customerAddress: "012 Circle Ct"});
+hashtable.set({phone:"999-999-9999", name:"Alex", customerAddress:"123 Random St"});
+hashtable.set({phone:"222-222-2222", name: "Sam", customerAddress:"456 Some Ln"});
+hashtable.set({phone:"333-333-3333", name: "Todd", customerAddress: "789 Nowhere Dr"});
+hashtable.set({phone:"555-555-5555", name: "Josh", customerAddress: "012 Circle Ct"});
 
 console.log(customers.get("999-999-9999"));
 console.log(customers.get("222-222-2222")); 
@@ -140,10 +140,10 @@ let HashTable = function(){
 };
 
 var ht = new HashTable();
-ht.add({key:'Fiction books', storageLimit:1000});
-ht.add({key:'Horror books',storageLimit:500});
-ht.add({key:'Comic books', storageLimit:300});
-ht.add({key:'Romance', storageLimit:210});
+ht.set({key:'Fiction books', storageLimit:1000});
+ht.set({key:'Horror books',storageLimit:500});
+ht.set({key:'Comic books', storageLimit:300});
+ht.set({key:'Romance', storageLimit:210});
 
 ht.search('Romance');
 
