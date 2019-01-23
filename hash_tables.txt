@@ -104,7 +104,7 @@ this.lookup = function(phone) {
 };
 };
 var customers = new HashTable();
-customers.add(68738565, 'Diana', '1234 Road');
+customers.add('68738565',{68738565, 'Diana', '1234 Road'});
 console.log(customers.lookup(12345678));
 
 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
